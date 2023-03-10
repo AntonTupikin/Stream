@@ -25,7 +25,7 @@ public class Main {
         //ищем призывников
         List<String> armyList = persons.stream()
                 .filter(value -> value.getSex() == Sex.MAN)
-                .filter(value -> value.getAge() > 18)
+                .filter(value -> value.getAge() >= 18)
                 .filter(value -> value.getAge() < 27)
                 .map(Person::getFamily)
                 .collect(Collectors.toList());
@@ -34,12 +34,12 @@ public class Main {
 
         //а кто работать будет
         List<String> workList = persons.stream()
-                .filter(value -> value.getAge() > 18)
+                .filter(value -> value.getAge() >= 18)
                 .filter(value -> {
                     if (value.getSex() == Sex.MAN) {
-                        return value.getAge() < 65;
+                        return value.getAge() <= 65;
                     } else {
-                        return value.getAge() < 60;
+                        return value.getAge() <= 60;
                     }
                 })
                 .filter(value -> value.getEducation() == Education.HIGHER)
